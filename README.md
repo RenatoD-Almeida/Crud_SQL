@@ -62,7 +62,10 @@ Export | Configura se será ou não exportado o retorno a um arquivo .txt
 ##### OPTIONS
 
 • __Collumn__ : Se o valor passado for "." (ponto) retornará todas as colunas da tabela configurada.
-• __Filter__ : ao passar o filtro é importante citar que é necessário que esteja entre aspas simples, e que siga a sintaxe do MySql que é inserida na clausula "where". Se o valor passado for "." (ponto), desconsiderará um filtro e trará todos os valores.
+
+• __Filter__ : ao passar o filtro é importante citar que é necessário que esteja entre aspas simples, e que siga a sintaxe do MySql que é inserida na clausula "where".
+Se o valor passado for "." (ponto), desconsiderará um filtro e trará todos os valores.
+
 • __Export__: aceita apenas "on" ou "off" caso diferente, será disparado uma excessão. Caso on, irá exportar a query e o retorno para um arquivo .txt. A configuração da saída desse arquivo se encontra dentro do modulo "Consult" no seguinte trecho:
 
 ~~~Java
