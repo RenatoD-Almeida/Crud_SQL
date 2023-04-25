@@ -43,7 +43,7 @@ São denominadas de _FLAGS_ e são passadas ao executável através do prefixo _
 
 ##### CONFIGURAÇÃO DA AÇÃO :
 
-São as denomindas _OPTIONS_ e são passadas ao executável através do prefixo _"-"_, seus valores são passado posteriormente a option, como neste [exemplo](#exemplo1)... e são elas : __table, filter, collumn, export,__
+São as denomindas _OPTIONS_ e são passadas ao executável através do prefixo _"-"_, seus valores são passado posteriormente a option, como nos exemplos ao final da documentação ... e são elas : __table, filter, collumn, export,__
 
 As Flags e Options são cadastradas previamente na aplicação. Atualmente são elas:
 
@@ -75,7 +75,7 @@ if(ex == Export.ON)
 {
 ~~~
 
-#### Executando {#exemplo1}
+#### Executando
 
 Levando em consideração a regra : 
 
