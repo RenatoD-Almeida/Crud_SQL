@@ -1,8 +1,13 @@
 package domain;
 
+import Utils.Export;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 
-public record Consult(String table, String filter, String collumn) implements ModeStrategy{
+public record Consult(String table, String filter, String collumn, Export ex) implements ModeStrategy{
 
     @Override
     public void runImpl(Connection conn) throws SQLException {
@@ -31,19 +36,39 @@ public record Consult(String table, String filter, String collumn) implements Mo
                     collumns.append("%-30S".formatted(metaData.getColumnName(i)));
                 }
 
+                int len = collumns.length() - 24;
+                collumns.append('\n'+ "-".repeat(len));
                 System.out.println(collumns);
-                System.out.println("-".repeat(collumns.length() - 24));
+
+                StringBuilder collumnsValue = new StringBuilder();
 
                 while(resultSet.next())
                 {
                     for(int i = 1; i <= columnCount; ++i)
                     {
                         Object value = resultSet.getObject(i);
-                        System.out.printf("%-30s", value);
+                        collumnsValue.append("%-30s".formatted(value));
                     }
-                    System.out.println();
+                    collumnsValue.append('\n');
                 }
-                System.out.println("-".repeat(collumns.length() - 24));
+                collumnsValue.append("-".repeat(len));
+                System.out.println(collumnsValue);
+
+
+                if(ex == Export.ON)
+                {
+                    try(BufferedWriter writer = new BufferedWriter(new FileWriter("./QuerySaved.txt", true)))
+                    {
+                        writer.write(query);
+                        writer.newLine();
+                        writer.newLine();
+                        writer.write(collumns.toString());
+                        writer.newLine();
+                        writer.write(collumnsValue.toString());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         }
 
@@ -51,6 +76,11 @@ public record Consult(String table, String filter, String collumn) implements Mo
 
     @Override
     public String toString() {
-        return "Table : " + table + "\nFilter : " + filter + "\nCollun : " + collumn;
+        return "Consult{" +
+                "table='" + table + '\'' +
+                ", filter='" + filter + '\'' +
+                ", collumn='" + collumn + '\'' +
+                ", ex=" + ex +
+                '}';
     }
 }

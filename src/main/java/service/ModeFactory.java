@@ -1,5 +1,6 @@
 package service;
 
+import Utils.Export;
 import Utils.RegisteredFlag;
 import Utils.RegisteredOption;
 import domain.Consult;
@@ -26,7 +27,15 @@ public class ModeFactory {
             if(collumn.isEmpty())
                 throw new IllegalArgumentException("Para a flag 'CONSULT' a option 'COLLUMN' não pode estar vazio");
 
-            return new Consult(table, filter, collumn);
+            String export = argParser.getOption(RegisteredOption.EXPORT);
+
+            if(export.isEmpty() || export.equals("off"))
+            {
+                return new Consult(table, filter, collumn, Export.OFF);
+            }
+
+            return new Consult(table, filter, collumn, Export.ON);
+
         }
 
         return null;
