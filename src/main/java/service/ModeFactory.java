@@ -10,7 +10,7 @@ public class ModeFactory {
 
     public static ModeStrategy get(ArgumentParser argParser)
     {
-        String table = argParser.getOption(RegisteredOption.TABELA);
+        String table = argParser.getOption(RegisteredOption.TABLE);
 
         if(table.isEmpty())
             throw new IllegalArgumentException("A option 'TABELA' não pode estar vazia");
@@ -19,11 +19,11 @@ public class ModeFactory {
         if(argParser.getFlag(RegisteredFlag.CONSULT))
         {
 
-            String filter = argParser.getOption(RegisteredOption.FILTRO);
+            String filter = argParser.getOption(RegisteredOption.FILTER);
             if(filter.isEmpty())
                 throw new IllegalArgumentException("Para a flag 'CONSULT' a option 'FILTRO' não pode estar vazia");
 
-            String collumn = String.join(",", argParser.getOption(RegisteredOption.COLUNA).split(" "));
+            String collumn = String.join(",", argParser.getOption(RegisteredOption.COLLUMN).split(" "));
             if(collumn.isEmpty())
                 throw new IllegalArgumentException("Para a flag 'CONSULT' a option 'COLLUMN' não pode estar vazio");
 

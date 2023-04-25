@@ -1,8 +1,8 @@
 package Utils;
 
 public enum RegisteredOption {
-    TABELA,
-    FILTRO,
-    COLUNA,
+    TABLE,
+    FILTER,
+    COLLUMN,
     EXPORT,
 }
