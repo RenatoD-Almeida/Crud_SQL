@@ -1,17 +1,17 @@
 package domain;
 
+import Utils.DB;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public interface ModeStrategy {
 
-    default void run(Properties props) throws SQLException {
+    default void run() throws SQLException {
 
-        try(Connection conn = DriverManager.getConnection(props.getProperty("url"), props))
+        try(Connection conn = DB.getConnection())
         {
-            System.out.printf("[ %S ]%n", this.getClass().getSimpleName());
+            System.out.printf("%n[ %S ]%n", this.getClass().getSimpleName());
             this.runImpl(conn);
         }
 

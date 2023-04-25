@@ -11,11 +11,9 @@ public record Consult(String table, String filter, String collumn) implements Mo
         System.out.println(this.toString());
         System.out.println("------------------------------------");
 
-        String query = "SELECT " + collumn + " FROM " + table;
+        String query = "SELECT " + (collumn.equals(".") ? "*" : collumn) + " FROM " + table;
 
-        boolean anything = filter.equals("*");
-
-        if(!anything)
+        if(!filter.equals("."))
             query += " WHERE " + filter;
 
         try(PreparedStatement ps = conn.prepareStatement(query))
@@ -45,6 +43,7 @@ public record Consult(String table, String filter, String collumn) implements Mo
                     }
                     System.out.println();
                 }
+                System.out.println("-".repeat(collumns.length() - 24));
             }
         }
 
