@@ -84,9 +84,9 @@ Levando em consideração a regra :
 Temos os seguinte exemplo de execução
 
 ~~~Shell
-java -jar CrudSql.jar --consult -table produtos -collumn nome preco -filter 'preco > 5'
+java -jar CrudSql.jar -consult -table produtos -collumn nome preco -filter 'preco > 5'
 ~~~
 
 ~~~Shell
-java -jar CrudSql.jar --consult -table produtos -collumn . -filter .
+java -jar CrudSql.jar -consult -table produtos -collumn . -filter .
 ~~~
