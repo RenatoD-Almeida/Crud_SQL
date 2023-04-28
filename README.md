@@ -89,16 +89,20 @@ Temos os seguinte exemplo de execução
 java -jar CrudSql.jar --consult -DB comercio -table produtos -collumn nome preco -filter 'preco > 5'
 ~~~
 
-Com a seguinte saída :
+Com a seguinte saída : 
+![](https://raw.githubusercontent.com/RenatoD-Almeida/Crud_SQL/main/assets/Captura%20de%20tela%202023-04-28%20152738.png)
 
 ~~~Shell
 java -jar CrudSql.jar --consult  -db my_banco -table pessoas -collumn . -filter .
 ~~~
 
 Com a seguinte saída :
+![](https://raw.githubusercontent.com/RenatoD-Almeida/Crud_SQL/main/assets/Captura%20de%20tela%202023-04-28%20152802.png)
 
 ~~~Shell
 java -jar CrudSql.jar --consult  -db comercio -table produtos -collumn . -filter nome like "'A%'"
 ~~~
 
 Com a seguinte saída :
+
+![](https://raw.githubusercontent.com/RenatoD-Almeida/Crud_SQL/main/assets/Captura%20de%20tela%202023-04-28%20152935.png)
