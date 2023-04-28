@@ -11,10 +11,13 @@ public class ModeFactory {
     public static ModeStrategy get(ArgumentParser argParser)
     {
         String table = argParser.getOption(RegisteredOption.TABLE);
+        String dataBase = argParser.getOption(RegisteredOption.DB);
+
+        if(dataBase.isEmpty())
+            throw new IllegalArgumentException("A option 'DB' não pode estar vazia");
 
         if(table.isEmpty())
             throw new IllegalArgumentException("A option 'TABELA' não pode estar vazia");
-
 
         if(argParser.getFlag(RegisteredFlag.CONSULT))
         {
@@ -38,6 +41,6 @@ public class ModeFactory {
 
         }
 
-        return null;
+        throw new IllegalArgumentException("Não foi possível retornar um Mode válido");
     }
 }

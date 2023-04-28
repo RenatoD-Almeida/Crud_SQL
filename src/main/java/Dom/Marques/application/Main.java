@@ -1,5 +1,6 @@
 package Dom.Marques.application;
 
+import Utils.RegisteredOption;
 import service.ArgumentParser;
 import service.ModeFactory;
 
@@ -14,7 +15,10 @@ public class Main {
         try
         {
             ArgumentParser argParser = ArgumentParser.Parser(args);
-            Objects.requireNonNull(ModeFactory.get(argParser)).run();
+            System.out.println(argParser);
+
+            Objects.requireNonNull(ModeFactory.get(argParser))
+                    .run(argParser.getOption(RegisteredOption.DB));
 
         }catch (RuntimeException | IOException | SQLException err )
         {

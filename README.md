@@ -17,6 +17,8 @@ Antes de executar este projeto, é necessário que você tenha um banco de dados
 
 As configurações para conectar a aplicação ao banco ficam na classe DB, onde há constantes que necessitam ser configuradas.
 
+A option para dizer qual data base que será passiva: -DB; Como mostrado nos exemplos ao final da documentação
+
 Essas configurações:
 
 ~~~Java
@@ -43,7 +45,7 @@ São denominadas de _FLAGS_ e são passadas ao executável através do prefixo _
 
 ##### CONFIGURAÇÃO DA AÇÃO :
 
-São as denomindas _OPTIONS_ e são passadas ao executável através do prefixo _"-"_, seus valores são passado posteriormente a option, como neste [exemplo](#exemplo1)... e são elas : __table, filter, collumn, export,__
+São as denomindas _OPTIONS_ e são passadas ao executável através do prefixo _"-"_, seus valores são passado posteriormente a option, como mostrado ao final da documentação com exemplos... e são elas : __table, Db, filter, collumn, export,__
 
 As Flags e Options são cadastradas previamente na aplicação. Atualmente são elas:
 
@@ -54,7 +56,8 @@ consult| tabela, coluna, filtro | realiza uma busca no banco de dados
 
 Option | Função 
 -------|-------
-Table | Configura a tabela que será passiva da execução
+DB | Configura a data base que será passiva da execução.
+Table | Configura a tabela que será passiva da execução.
 Filter | Configura qual tipo de informação será retornado.
 Collumn | Configura quais colunas serão retornados.
 Export | Configura se será ou não exportado o retorno a um arquivo .txt
@@ -62,7 +65,9 @@ Export | Configura se será ou não exportado o retorno a um arquivo .txt
 ##### OPTIONS
 
 • __Collumn__ : Se o valor passado for "." (ponto) retornará todas as colunas da tabela configurada.
+
 • __Filter__ : ao passar o filtro é importante citar que é necessário que esteja entre aspas simples, e que siga a sintaxe do MySql que é inserida na clausula "where". Se o valor passado for "." (ponto), desconsiderará um filtro e trará todos os valores.
+
 • __Export__: aceita apenas "on" ou "off" caso diferente, será disparado uma excessão. Caso on, irá exportar a query e o retorno para um arquivo .txt. A configuração da saída desse arquivo se encontra dentro do modulo "Consult" no seguinte trecho:
 
 ~~~Java
@@ -76,14 +81,24 @@ if(ex == Export.ON)
 
 Levando em consideração a regra : 
 
-```--Flag --option_1 option_1_value option_1_value ... --option_2 option_2_value option_2_value ...```
+```--Flag -option_1 option_1_value option_1_value ... -option_2 option_2_value option_2_value ...```
 
 Temos os seguinte exemplo de execução
 
 ~~~Shell
-java -jar CrudSql.jar --consult -table produtos -collumn nome preco -filter 'preco > 5'
+java -jar CrudSql.jar --consult -DB comercio -table produtos -collumn nome preco -filter 'preco > 5'
 ~~~
 
+Com a seguinte saída :
+
 ~~~Shell
-java -jar CrudSql.jar --consult -table produtos -collumn . -filter .
+java -jar CrudSql.jar --consult  -db my_banco -table pessoas -collumn . -filter .
 ~~~
+
+Com a seguinte saída :
+
+~~~Shell
+java -jar CrudSql.jar --consult  -db comercio -table produtos -collumn . -filter nome like "'A%'"
+~~~
+
+Com a seguinte saída :

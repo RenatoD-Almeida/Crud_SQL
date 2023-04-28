@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 public interface ModeStrategy {
 
-    default void run() throws SQLException {
+    default void run(String data) throws SQLException {
 
-        try(Connection conn = DB.getConnection())
+        try(Connection conn = DB.getConnection(data))
         {
             System.out.printf("%n[ %S ]%n", this.getClass().getSimpleName());
             this.runImpl(conn);
