@@ -4,6 +4,6 @@ public enum RegisteredOption {
     TABLE,
     DB,
     FILTER,
-    COLLUMN,
+    COLUMN,
     EXPORT,
 }
