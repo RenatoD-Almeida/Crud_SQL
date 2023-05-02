@@ -1,13 +1,11 @@
 package domain;
 
-import Utils.DBManager;
 import Utils.Export;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
-import java.util.Arrays;
 
 public record Consult(String table, String filter, String collumn, Export ex) implements ModeStrategy{
 
@@ -23,7 +21,6 @@ public record Consult(String table, String filter, String collumn, Export ex) im
         String query = "SELECT " + (collumn.equals(".") ? "*" : collumn) + " FROM " + splitedTables[0];
 
         DatabaseMetaData dataBaseMetaData = conn.getMetaData();
-
 
         if(splitedTables.length > 1)
         {
@@ -45,8 +42,6 @@ public record Consult(String table, String filter, String collumn, Export ex) im
 
         if(!filter.equals("."))
             query += " WHERE " + filter;
-
-        System.out.println(query);
 
         try(PreparedStatement ps = conn.prepareStatement(query);
             ResultSet resultSet = ps.executeQuery())
